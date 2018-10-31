@@ -80,10 +80,14 @@ public class DataBaseHandler extends SQLiteOpenHelper {
      db.execSQL(tableStoreProduct);
 
      String onCreateInsertCategorys = "INSERT INTO " + TABLE_CATEGORY
-             + " (" + CATEGORY_NAME + ") VALUES('Technology'),('Home'),('Electronics')";
+             + " (" + CATEGORY_NAME + ") VALUES('Technology')," +
+             "('Home'),('Electronics')";
     db.execSQL(onCreateInsertCategorys);
 
-    String onCreateInsertCitys = "INSERT INTO ";
+    String onCreateInsertCitys = "INSERT INTO " + TABLE_CITY
+            + "(" + CITY_NAME + ") VALUES('Tepito'),('Tlaquepaque')," +
+            "('Texcoco'),('Why')";
+    db.execSQL(onCreateInsertCitys);
     }
 
     @Override

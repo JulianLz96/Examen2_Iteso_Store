@@ -18,6 +18,7 @@ public class ItemProduct implements Parcelable{
     private String phone;
     private String description;
     private Integer image;
+    private Category category;
 
     public String getLocation() {
         return location;
@@ -59,6 +60,10 @@ public class ItemProduct implements Parcelable{
         this.code = code;
     }
 
+    public void setCategory(Category category) { this.category = category; }
+
+    public Category getCategory() { return  this.category; }
+
     @Override
     public String toString() {
         return "ItemProduct{" +
@@ -68,7 +73,8 @@ public class ItemProduct implements Parcelable{
                 ", location='" + location + '\'' +
                 ", phone='" + phone + '\'' +
                 ", description='" + description + '\'' +
-                ", image=" + image +
+                ", image=" + image + '\'' +
+                ", category=" + category +
                 '}';
     }
 

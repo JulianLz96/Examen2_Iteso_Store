@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.ProgressBar;
 
+import com.iteso.pdm18_scrollabletabs.beans.Category;
 import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class ItemProductControl {
    public ArrayList<ItemProduct> getItemProductsByCategory(int idCategory, DataBaseHandler dh){
         ArrayList<ItemProduct> items = new ArrayList<>();
         SQLiteDatabase db = dh.getReadableDatabase();
+       Category cat = new Category();
         String select = "SELECT " +
                 DataBaseHandler.PRODUCT_TITLE +
                 "," + DataBaseHandler.PRODUCT_IMAGE +
@@ -43,7 +45,7 @@ public class ItemProductControl {
         Cursor cursor = db.rawQuery(select, null);
         while (cursor.moveToNext()) {
             ItemProduct itemProduct = new ItemProduct();
-            putItem(cursor, itemProduct);
+            putItem(cursor, itemProduct,cat);
             items.add(itemProduct);
         }
 
@@ -56,10 +58,13 @@ public class ItemProductControl {
         return items;
     }
 
-    public void putItem(Cursor cursor, ItemProduct itemProduct) {
+    public void putItem(Cursor cursor, ItemProduct itemProduct, Category category) {
+
+        category.setId(cursor.getInt(3));
+
         itemProduct.setTitle(cursor.getString(0));
         itemProduct.setImage(cursor.getInt(1));
-        itemProduct.setCategory(itemProduct.getCategory());
+        itemProduct.setCategory(category);
 
     }
 }

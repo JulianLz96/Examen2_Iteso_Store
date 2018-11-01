@@ -31,7 +31,7 @@ public class CategoryControl {
         String select = "SELECT " + DataBaseHandler.CATEGORY_ID  + ","
                 + DataBaseHandler.CATEGORY_ID + ","
                 + DataBaseHandler.CATEGORY_NAME
-                + "FROM " + DataBaseHandler.TABLE_CATEGORY;
+                + " FROM " + DataBaseHandler.TABLE_CATEGORY;
 
         Cursor cursor = db.rawQuery(select, null);
         while (cursor.moveToNext()) {

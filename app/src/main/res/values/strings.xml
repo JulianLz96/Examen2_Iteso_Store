@@ -7,9 +7,21 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="item_button">Save</string>
+    <string name="item_image_label">Item</string>
+    <string name="item_category_label">Category</string>
+    <string name="item_store_label">Store</string>
     <string name="item_title">Item Name</string>
     <string name="section1">Technology</string>
     <string name="section2">Home</string>
     <string name="section3">Electronics</string>
     <string name="splash_text">Welcome to ITESO Products</string>
+
+    <array name="item_photos">
+        <item>alienware</item>
+        <item>mac</item>
+        <item>micro</item>
+        <item>pillows</item>
+        <item>refrigerator</item>
+        <item>sheets</item>
+    </array>
 </resources>

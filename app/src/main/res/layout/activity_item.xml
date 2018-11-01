@@ -7,9 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".ActivityItem"
     android:orientation="vertical">
-
-    <Spinner
+    <TextView
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_image_label"
+        android:textSize="@dimen/splash_text"/>
+    <Spinner
+
         android:id="@+id/item_photo_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -22,15 +27,25 @@
         android:layout_height="wrap_content"
         android:hint="@string/item_title"
         android:inputType="text"/>
-    <Spinner
+    <TextView
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_category_label"
+        android:textSize="@dimen/splash_text"/>
+    <Spinner
         android:id="@+id/item_category_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
     </Spinner>
-    <Spinner
+    <TextView
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_store_label"
+        android:textSize="@dimen/splash_text"/>
+    <Spinner
         android:id="@+id/item_store_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">

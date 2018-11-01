@@ -1,6 +1,7 @@
 package com.iteso.pdm18_scrollabletabs;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.iteso.pdm18_scrollabletabs.tools.Constant;
 
@@ -43,6 +45,16 @@ public class ActivityMain extends AppCompatActivity {
         ViewPager mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         tabLayout.setupWithViewPager(mViewPager);
+
+        FloatingActionButton floatingActionButton = findViewById(R.id.activity_fab);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityMain.this, ActivityItem.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 

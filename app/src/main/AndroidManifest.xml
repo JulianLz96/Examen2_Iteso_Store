@@ -19,8 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityProduct"></activity>
-        <activity android:name=".ActivitySplashScreen"></activity>
+        <activity android:name=".ActivityProduct" />
+        <activity android:name=".ActivitySplashScreen" />
+        <activity android:name=".ActivityItem"></activity>
     </application>
 
 </manifest>

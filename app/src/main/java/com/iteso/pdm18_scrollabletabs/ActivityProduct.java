@@ -11,11 +11,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
+import com.iteso.pdm18_scrollabletabs.beans.Store;
 import com.iteso.pdm18_scrollabletabs.tools.Constant;
 
 public class ActivityProduct extends AppCompatActivity {
 
-    EditText title, location, store, phone;
+    EditText title, location, name, phone;
     ImageView image;
     Button save, cancel;
     ItemProduct itemProduct;
@@ -28,7 +29,7 @@ public class ActivityProduct extends AppCompatActivity {
         image = findViewById(R.id.activity_product_image);
         title = findViewById(R.id.activity_product_title);
         location = findViewById(R.id.activity_product_location);
-        store = findViewById(R.id.activity_product_store);
+        name = findViewById(R.id.activity_product_store);
         phone = findViewById(R.id.activity_product_phone);
         save = findViewById(R.id.activity_product_save);
         cancel = findViewById(R.id.activity_product_cancel);
@@ -36,9 +37,12 @@ public class ActivityProduct extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Store store = new Store();
+
+                store.setName(name.getText().toString());
                 itemProduct.setTitle(title.getText().toString());
                 itemProduct.setLocation(location.getText().toString());
-                itemProduct.setStore(store.getText().toString());
+                itemProduct.setStore(store);
                 itemProduct.setPhone(phone.getText().toString());
                 Intent intent = new Intent();
                 intent.putExtra(Constant.EXTRA_PRODUCT, itemProduct);
@@ -58,9 +62,10 @@ public class ActivityProduct extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             itemProduct = getIntent().getParcelableExtra(Constant.EXTRA_PRODUCT);
             if (itemProduct != null) {
+
                 title.setText(itemProduct.getTitle());
                 location.setText(itemProduct.getLocation());
-                store.setText(itemProduct.getStore());
+                name.setText(itemProduct.getStore().getName());
                 phone.setText(itemProduct.getPhone());
                 switch (itemProduct.getImage()) {
                     case Constant.TYPE_MAC:

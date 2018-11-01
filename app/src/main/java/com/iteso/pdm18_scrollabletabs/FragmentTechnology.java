@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
+import com.iteso.pdm18_scrollabletabs.database.DataBaseHandler;
+import com.iteso.pdm18_scrollabletabs.database.ItemProductControl;
 import com.iteso.pdm18_scrollabletabs.tools.Constant;
 
 import java.util.ArrayList;
@@ -22,7 +24,8 @@ import java.util.Iterator;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentTechnology extends Fragment {
-
+    ItemProductControl itemProductControl;
+    DataBaseHandler dh;
     RecyclerView recyclerView;
     ArrayList<ItemProduct> products;
     AdapterProduct adapterProduct;
@@ -53,10 +56,7 @@ public class FragmentTechnology extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
 
         products = new ArrayList<>();
-        products.add(new ItemProduct(1, "Mac", "BestBuy", "Zapopan", "3312345678", "Lorem Ipsum ....", Constant.TYPE_MAC));
-        products.add(new ItemProduct(2, "Alienware", "DELL", "Zapopan", "3312345678", "Lorem Ipsum ....", Constant.TYPE_ALIENWARE));
-        products.add(new ItemProduct(3, "Lanix", "Saint Jhonny", "Zapopan", "3312345678", "Lorem Ipsum ....", Constant.TYPE_ALIENWARE));
-
+        itemProductControl.getItemProductsByCategory(Constant.FRAGMENT_TECHNOLOGY, dh);
 
         adapterProduct = new AdapterProduct(Constant.FRAGMENT_TECHNOLOGY, getActivity(), products);
         recyclerView.setAdapter(adapterProduct);

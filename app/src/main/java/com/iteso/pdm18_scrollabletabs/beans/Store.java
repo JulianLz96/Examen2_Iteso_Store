@@ -67,4 +67,5 @@ public class Store {
     public void setCity(City city) {
         this.city = city;
     }
+
 }

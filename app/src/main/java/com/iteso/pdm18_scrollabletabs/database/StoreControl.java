@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.iteso.pdm18_scrollabletabs.beans.City;
 import com.iteso.pdm18_scrollabletabs.beans.Store;
 
 import java.lang.ref.SoftReference;
@@ -90,13 +91,16 @@ public class StoreControl {
     }
 
     public void putStore(Cursor cursor, Store store) {
+
         store.setId(cursor.getInt(0));
         store.setName(cursor.getString(1));
         store.setPhone(cursor.getString(2));
-        //store.setCity();//TODO implementar setCity
+        store.setCity(store.getCity());
         store.setThumbnail(cursor.getInt(4));
         store.setLatitude(cursor.getDouble(5));
         store.setLongitude(cursor.getDouble(6));
+
+
     }
 
 }

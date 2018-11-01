@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
+import com.iteso.pdm18_scrollabletabs.database.DataBaseHandler;
+import com.iteso.pdm18_scrollabletabs.database.ItemProductControl;
 import com.iteso.pdm18_scrollabletabs.tools.Constant;
 
 import java.util.ArrayList;
@@ -21,7 +23,8 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentHome extends Fragment {
-
+    ItemProductControl itemProductControl;
+    DataBaseHandler dh;
 
     RecyclerView recyclerView;
 
@@ -50,9 +53,7 @@ public class FragmentHome extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
 
         ArrayList<ItemProduct> products = new ArrayList<>();
-        products.add(new ItemProduct(4, "Sabanas", "Zara Home", "Zapopan", "3312345678", "Lorem Ipsum ....", Constant.TYPE_SHEETS));
-        products.add(new ItemProduct(5, "Almohadas", "Zara Home", "Zapopan", "3312345678", "Lorem Ipsum ....", Constant.TYPE_PILLOW));
-
+        itemProductControl.getItemProductsByCategory(Constant.FRAGMENT_HOME, dh);
         AdapterProduct adapterProduct = new AdapterProduct(Constant.FRAGMENT_HOME, getActivity(), products);
         recyclerView.setAdapter(adapterProduct);
     }

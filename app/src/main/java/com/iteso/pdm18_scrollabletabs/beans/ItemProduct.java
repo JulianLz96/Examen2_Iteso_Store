@@ -13,7 +13,7 @@ import android.os.Parcelable;
 public class ItemProduct implements Parcelable{
     private int code;
     private String title;
-    private String store;
+    private Store store;
     private String location;
     private String phone;
     private String description;
@@ -78,7 +78,7 @@ public class ItemProduct implements Parcelable{
                 '}';
     }
 
-    public ItemProduct(int code, String title, String store, String location, String phone, String description, Integer image) {
+    public ItemProduct(int code, String title, Store store, String location, String phone, String description, Integer image) {
         this.code = code;
         this.title = title;
         this.store = store;
@@ -88,10 +88,7 @@ public class ItemProduct implements Parcelable{
         this.image = image;
     }
 
-    public ItemProduct(String title, String store) {
-        this.title = title;
-        this.store = store;
-    }
+    public ItemProduct() { }
 
     public String getTitle() {
         return title;
@@ -101,11 +98,11 @@ public class ItemProduct implements Parcelable{
         this.title = title;
     }
 
-    public String getStore() {
+    public Store getStore() {
         return store;
     }
 
-    public void setStore(String store) {
+    public void setStore(Store store) {
         this.store = store;
     }
 
@@ -118,7 +115,6 @@ public class ItemProduct implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.code);
         dest.writeString(this.title);
-        dest.writeString(this.store);
         dest.writeString(this.location);
         dest.writeString(this.phone);
         dest.writeString(this.description);
@@ -128,7 +124,6 @@ public class ItemProduct implements Parcelable{
     ItemProduct(Parcel in) {
         this.code = in.readInt();
         this.title = in.readString();
-        this.store = in.readString();
         this.location = in.readString();
         this.phone = in.readString();
         this.description = in.readString();

@@ -68,7 +68,9 @@ public class DataBaseHandler extends SQLiteOpenHelper {
                 + PRODUCT_ID_PRODUCT + "INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
                 + PRODUCT_TITLE + "TEXT,"
                 + PRODUCT_IMAGE + "INTEGER,"
-                + PRODUCT_ID_CATEGORY + "INTEGER)";
+                + PRODUCT_ID_CATEGORY + "INTEGER,"
+                + " FOREIGN KEY (" +PRODUCT_ID_CATEGORY+") REFERENCES "
+                + TABLE_CATEGORY+"("+CATEGORY_ID+"));";
         String tableStoreProduct = "CREATE TABLE " + TABLE_STORE_PRODUCT + " ("
                 + STORE_PRODUCT_ID + "INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
                 + STORE_PRODUCT_ID_PRODUCT + "INTEGER,"

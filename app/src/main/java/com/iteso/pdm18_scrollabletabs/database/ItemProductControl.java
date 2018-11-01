@@ -1,10 +1,15 @@
 package com.iteso.pdm18_scrollabletabs.database;
 
+import android.content.ClipData;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.ProgressBar;
 
 import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
+
+import java.util.ArrayList;
+import java.util.Currency;
 
 public class ItemProductControl {
 
@@ -24,4 +29,37 @@ public class ItemProductControl {
         }
     }
 
+
+   public ArrayList<ItemProduct> getItemProductsByCategory(int idCategory, DataBaseHandler dh){
+        ArrayList<ItemProduct> items = new ArrayList<>();
+        SQLiteDatabase db = dh.getReadableDatabase();
+        String select = "SELECT " +
+                DataBaseHandler.PRODUCT_TITLE +
+                "," + DataBaseHandler.PRODUCT_IMAGE +
+                "," + DataBaseHandler.PRODUCT_ID_CATEGORY
+                + " FROM " + DataBaseHandler.TABLE_PRODUCT +
+                " WHERE " + DataBaseHandler.PRODUCT_ID_CATEGORY + " = " + idCategory;
+
+        Cursor cursor = db.rawQuery(select, null);
+        while (cursor.moveToNext()) {
+            ItemProduct itemProduct = new ItemProduct();
+            putItem(cursor, itemProduct);
+            items.add(itemProduct);
+        }
+
+        try {
+            cursor.close();
+            db.close();
+        } catch (Exception e) {
+
+        }
+        return items;
+    }
+
+    public void putItem(Cursor cursor, ItemProduct itemProduct) {
+        itemProduct.setTitle(cursor.getString(0));
+        itemProduct.setImage(cursor.getInt(1));
+        itemProduct.setCategory(itemProduct.getCategory());
+
+    }
 }

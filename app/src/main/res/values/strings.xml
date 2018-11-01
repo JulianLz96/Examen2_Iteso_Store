@@ -9,4 +9,5 @@
     <string name="section1">Technology</string>
     <string name="section2">Home</string>
     <string name="section3">Electronics</string>
+    <string name="splash_text">Welcome to ITESO Products</string>
 </resources>

@@ -1,13 +1,12 @@
-package com.iteso.pdm18_scrollabletabs.database;
+package com.iteso.examen2.database;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.iteso.pdm18_scrollabletabs.beans.Category;
+import com.iteso.examen2.beans.Category;
 
 import java.util.ArrayList;
-import java.util.Currency;
 
 public class CategoryControl {
     public void addCategory(Category category, DataBaseHandler dh) {

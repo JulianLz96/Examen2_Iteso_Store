@@ -6,7 +6,7 @@
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent"
                                                  android:fitsSystemWindows="true"
-                                                 tools:context="com.iteso.pdm18_scrollabletabs.ActivityMain">
+                                                 tools:context="com.iteso.pdm18_scrollabletabs.com.iteso.examen2.ActivityMain">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"

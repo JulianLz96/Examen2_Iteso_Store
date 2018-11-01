@@ -1,13 +1,13 @@
-package com.iteso.pdm18_scrollabletabs.database;
+package com.iteso.examen2.database;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
-import com.iteso.pdm18_scrollabletabs.beans.City;
-import com.iteso.pdm18_scrollabletabs.beans.Store;
+import com.iteso.examen2.beans.City;
+import com.iteso.examen2.beans.Store;
 
-import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 
 public class StoreControl {
@@ -32,9 +32,11 @@ public class StoreControl {
     }
 
     public ArrayList<Store> getStores(DataBaseHandler dh) {
+        Log.e("getStores", " Before array", null);
         ArrayList<Store> stores = new ArrayList<>();
+        Log.e("Stores", " Before getReadableDatabase", null);
         SQLiteDatabase db = dh.getReadableDatabase();
-
+        Log.e("Stores", " Hola", null);
         String select = "SELECT " + DataBaseHandler.STORE_ID + ","
                 + DataBaseHandler.STORE_ID + ","
                 + DataBaseHandler.STORE_NAME + ","
@@ -77,12 +79,25 @@ public class StoreControl {
                 + " WHERE " + DataBaseHandler.STORE_ID + " = "
                 + idStore;
         Cursor cursor = db.rawQuery(select, null);
+        Cursor cursor1 = null;
+        City city = new City();
         while (cursor.moveToNext()) {
+            String select2 = "SELECT " + DataBaseHandler.CITY_ID + " ,"
+                    + DataBaseHandler.CITY_NAME
+                    + " FROM" + DataBaseHandler.TABLE_CITY
+                    + " WHERE " + DataBaseHandler.CITY_ID + " = "
+                    + cursor.getInt(3);
+            cursor1 = db.rawQuery(select2, null);
+            cursor1.moveToNext();
+            city.setId(cursor1.getInt(0));
+            city.setName(cursor1.getString(1));
+            store.setCity(city);
             putStore(cursor, store);
         }
 
         try {
             cursor.close();
+            cursor1.close();
             db.close();
         } catch (Exception e) {
 
@@ -95,7 +110,7 @@ public class StoreControl {
         store.setId(cursor.getInt(0));
         store.setName(cursor.getString(1));
         store.setPhone(cursor.getString(2));
-        store.setCity(store.getCity());
+        //store.setCity(store.getCity());
         store.setThumbnail(cursor.getInt(4));
         store.setLatitude(cursor.getDouble(5));
         store.setLongitude(cursor.getDouble(6));

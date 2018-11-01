@@ -1,12 +1,13 @@
-package com.iteso.pdm18_scrollabletabs.database;
+package com.iteso.examen2.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DataBaseHandler extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "Iteso.Store";
+    private static final String DATABASE_NAME = "ItesoStore.db";
     private static final int DATABASE_VERSION = 1;
 
     private static DataBaseHandler dataBaseHandler;
@@ -43,38 +44,43 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     }
 
     public static DataBaseHandler getInstance(Context context) {
-        if(dataBaseHandler == null)
+        if(dataBaseHandler == null) {
             dataBaseHandler = new DataBaseHandler(context);
+
+            Log.e("Stores", " GetInstance True", null);
+        }
         return dataBaseHandler;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+        Log.e("Stores", " OnCreate", null);
         String tableCity = "CREATE TABLE " + TABLE_CITY + " ("
-                + CITY_ID + "INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
-                + CITY_NAME + "TEXT)";
+                + CITY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
+                + CITY_NAME + " TEXT)";
         String tableCategory = "CREATE TABLE " + TABLE_CATEGORY + " ("
-                + CATEGORY_ID + "INTEGER PRIMARY KEY,"
-                + CATEGORY_NAME + "TEXT)";
+                + CATEGORY_ID + " INTEGER PRIMARY KEY,"
+                + CATEGORY_NAME + " TEXT)";
         String tableStore = "CREATE TABLE " + TABLE_STORE + " ("
-                + STORE_ID + "INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
-                + STORE_NAME + "TEXT,"
-                + STORE_PHONE + "TEXT,"
-                + STORE_IDCITY + "INTEGER,"
-                + STORE_THUMBNAIL + "INTEGER,"
-                + STORE_LATITUDE + "DOUBLE,"
-                + STORE_LONGITUDE + "DOUBLE)";
+                + STORE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
+                + STORE_NAME + " TEXT,"
+                + STORE_PHONE + " TEXT,"
+                + STORE_IDCITY + " INTEGER,"
+                + STORE_THUMBNAIL + " INTEGER,"
+                + STORE_LATITUDE + " DOUBLE,"
+                + STORE_LONGITUDE + " DOUBLE)";
         String tableProduct = "CREATE TABLE " + TABLE_PRODUCT + " ("
-                + PRODUCT_ID_PRODUCT + "INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
-                + PRODUCT_TITLE + "TEXT,"
-                + PRODUCT_IMAGE + "INTEGER,"
-                + PRODUCT_ID_CATEGORY + "INTEGER,"
+                + PRODUCT_ID_PRODUCT + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
+                + PRODUCT_TITLE + " TEXT,"
+                + PRODUCT_IMAGE + " INTEGER,"
+                + PRODUCT_ID_CATEGORY + " INTEGER,"
                 + " FOREIGN KEY (" +PRODUCT_ID_CATEGORY+") REFERENCES "
                 + TABLE_CATEGORY+"("+CATEGORY_ID+"));";
         String tableStoreProduct = "CREATE TABLE " + TABLE_STORE_PRODUCT + " ("
-                + STORE_PRODUCT_ID + "INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
-                + STORE_PRODUCT_ID_PRODUCT + "INTEGER,"
-                +STORE_PRODUCT_ID_STORE + "INTEGER)";
+                + STORE_PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
+                + STORE_PRODUCT_ID_PRODUCT + " INTEGER,"
+                +STORE_PRODUCT_ID_STORE + " INTEGER)";
      db.execSQL(tableCity);
      db.execSQL(tableCategory);
      db.execSQL(tableStore);

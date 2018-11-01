@@ -1,4 +1,4 @@
-package com.iteso.pdm18_scrollabletabs.beans;
+package com.iteso.examen2.beans;
 
 public class Store {
     private	int	id;

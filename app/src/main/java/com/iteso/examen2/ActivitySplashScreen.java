@@ -1,26 +1,28 @@
-package com.iteso.pdm18_scrollabletabs;
+package com.iteso.examen2;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
-import com.iteso.pdm18_scrollabletabs.beans.City;
-import com.iteso.pdm18_scrollabletabs.beans.Store;
-import com.iteso.pdm18_scrollabletabs.database.DataBaseHandler;
-import com.iteso.pdm18_scrollabletabs.database.StoreControl;
+import com.iteso.examen2.beans.City;
+import com.iteso.examen2.beans.Store;
+import com.iteso.pdm18_scrollabletabs.R;
+import com.iteso.examen2.database.DataBaseHandler;
+import com.iteso.examen2.database.StoreControl;
 
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class ActivitySplashScreen extends AppCompatActivity {
-    StoreControl storeControl;
+    StoreControl storeControl = new StoreControl();
     ArrayList<Store> stores = null;
-    DataBaseHandler dh;
+    DataBaseHandler dh = DataBaseHandler.getInstance(ActivitySplashScreen.this);
 
-    Store st1;
-    Store st2;
-    Store st3;
+    Store st1 = new Store();
+    Store st2 = new Store();
+    Store st3 = new Store();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,10 +57,14 @@ public class ActivitySplashScreen extends AppCompatActivity {
         st3.setPhone("23456098");
         st3.setThumbnail(0);
         st3.setCity(city3);
-
+        Log.e("Stores", " Hola", null);
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
+                if(dh == null)
+                Log.e("Stores", " dh null", null);
+                else
+                    Log.e("Stores", " dh not null", null);
                 stores = storeControl.getStores(dh);
                 if (stores.size() == 0){
                     storeControl.addStore(st1, dh);

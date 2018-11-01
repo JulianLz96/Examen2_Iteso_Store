@@ -1,4 +1,4 @@
-package com.iteso.pdm18_scrollabletabs;
+package com.iteso.examen2;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
@@ -10,12 +10,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.iteso.pdm18_scrollabletabs.tools.Constant;
+import com.iteso.pdm18_scrollabletabs.R;
+import com.iteso.examen2.tools.Constant;
 
 /**
  * @author Oscar Vargas
@@ -35,6 +37,7 @@ public class ActivityMain extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         TabLayout tabLayout = findViewById(R.id.tabs);
+
 
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three

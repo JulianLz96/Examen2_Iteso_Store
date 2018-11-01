@@ -1,6 +1,5 @@
-package com.iteso.pdm18_scrollabletabs;
+package com.iteso.examen2;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,25 +7,24 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.iteso.pdm18_scrollabletabs.beans.Category;
-import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
-import com.iteso.pdm18_scrollabletabs.beans.Store;
-import com.iteso.pdm18_scrollabletabs.database.CategoryControl;
-import com.iteso.pdm18_scrollabletabs.database.DataBaseHandler;
-import com.iteso.pdm18_scrollabletabs.database.ItemProductControl;
-import com.iteso.pdm18_scrollabletabs.database.StoreControl;
+import com.iteso.examen2.beans.Category;
+import com.iteso.examen2.beans.Store;
+import com.iteso.pdm18_scrollabletabs.R;
+import com.iteso.examen2.beans.ItemProduct;
+import com.iteso.examen2.database.CategoryControl;
+import com.iteso.examen2.database.DataBaseHandler;
+import com.iteso.examen2.database.ItemProductControl;
+import com.iteso.examen2.database.StoreControl;
 
 import java.util.ArrayList;
 
 public class ActivityItem extends AppCompatActivity {
-    StoreControl storeControl;
-    CategoryControl categoryControl;
-    DataBaseHandler dh;
-    ItemProduct itemProduct;
-    Context context;
+    StoreControl storeControl = new StoreControl();
+    CategoryControl categoryControl = new CategoryControl();
+    DataBaseHandler dh = DataBaseHandler.getInstance(ActivityItem.this);
+    ItemProduct itemProduct = new ItemProduct();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,11 +64,11 @@ public class ActivityItem extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(item_name.getText().equals("")){
+                if(item_name.getText().toString().equals("")){
                     Toast.makeText(ActivityItem.this,"Insert Item Text", Toast.LENGTH_LONG).show();
                 } else {
 
-                    itemProduct.setImage((int) spin_photo.getSelectedItem());
+                    itemProduct.setImage( spin_photo.getSelectedItemPosition());
                     itemProduct.setTitle(item_name.getText().toString());
                     itemProduct.setCategory((Category) spin_category.getSelectedItem());
                     itemProduct.setStore((Store) spin_store.getSelectedItem());

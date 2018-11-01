@@ -1,16 +1,13 @@
-package com.iteso.pdm18_scrollabletabs.database;
+package com.iteso.examen2.database;
 
-import android.content.ClipData;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.ProgressBar;
 
-import com.iteso.pdm18_scrollabletabs.beans.Category;
-import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
+import com.iteso.examen2.beans.Category;
+import com.iteso.examen2.beans.ItemProduct;
 
 import java.util.ArrayList;
-import java.util.Currency;
 
 public class ItemProductControl {
 
@@ -21,7 +18,7 @@ public class ItemProductControl {
         values.put(DataBaseHandler.PRODUCT_IMAGE, itemProduct.getImage());
         values.put(DataBaseHandler.PRODUCT_ID_CATEGORY, itemProduct.getCategory().getId());
 
-        db.insert(DataBaseHandler.TABLE_CATEGORY, null, values);
+        db.insert(DataBaseHandler.TABLE_PRODUCT, null, values);
 
         try {
             db.close();

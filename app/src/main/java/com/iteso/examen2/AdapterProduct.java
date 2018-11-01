@@ -1,4 +1,4 @@
-package com.iteso.pdm18_scrollabletabs;
+package com.iteso.examen2;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,10 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
-import com.iteso.pdm18_scrollabletabs.tools.Constant;
+import com.iteso.pdm18_scrollabletabs.R;
+import com.iteso.examen2.beans.ItemProduct;
+import com.iteso.examen2.tools.Constant;
 
 import java.util.ArrayList;
 

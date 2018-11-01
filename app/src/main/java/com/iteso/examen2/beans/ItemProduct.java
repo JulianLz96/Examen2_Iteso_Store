@@ -1,4 +1,4 @@
-package com.iteso.pdm18_scrollabletabs.beans;
+package com.iteso.examen2.beans;
 
 import android.os.Parcel;
 import android.os.Parcelable;

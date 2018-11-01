@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityItem"
+    tools:context="com.iteso.examen2.ActivityItem"
     android:orientation="vertical">
     <TextView
         android:layout_marginTop="@dimen/activity_vertical_margin"

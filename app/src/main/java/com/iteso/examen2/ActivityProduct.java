@@ -1,4 +1,4 @@
-package com.iteso.pdm18_scrollabletabs;
+package com.iteso.examen2;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,9 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
-import com.iteso.pdm18_scrollabletabs.beans.Store;
-import com.iteso.pdm18_scrollabletabs.tools.Constant;
+import com.iteso.examen2.beans.Store;
+import com.iteso.pdm18_scrollabletabs.R;
+import com.iteso.examen2.beans.ItemProduct;
+import com.iteso.examen2.tools.Constant;
 
 public class ActivityProduct extends AppCompatActivity {
 

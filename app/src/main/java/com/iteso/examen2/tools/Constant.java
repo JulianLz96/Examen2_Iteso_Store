@@ -1,4 +1,4 @@
-package com.iteso.pdm18_scrollabletabs.tools;
+package com.iteso.examen2.tools;
 
 /**
  * @author Oscar Vargas

@@ -1,4 +1,4 @@
-package com.iteso.pdm18_scrollabletabs;
+package com.iteso.examen2;
 
 
 import android.content.Intent;
@@ -11,25 +11,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
-import com.iteso.pdm18_scrollabletabs.database.DataBaseHandler;
-import com.iteso.pdm18_scrollabletabs.database.ItemProductControl;
-import com.iteso.pdm18_scrollabletabs.tools.Constant;
+import com.iteso.pdm18_scrollabletabs.R;
+import com.iteso.examen2.beans.ItemProduct;
+import com.iteso.examen2.database.DataBaseHandler;
+import com.iteso.examen2.database.ItemProductControl;
+import com.iteso.examen2.tools.Constant;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentElectronics extends Fragment {
-    ItemProductControl itemProductControl;
-    DataBaseHandler dh;
-
-
+public class FragmentTechnology extends Fragment {
+    ItemProductControl itemProductControl = new ItemProductControl();
+    DataBaseHandler dh = DataBaseHandler.getInstance(getActivity());
     RecyclerView recyclerView;
+    ArrayList<ItemProduct> products;
+    AdapterProduct adapterProduct;
 
-    public FragmentElectronics() {
+    public FragmentTechnology() {
         // Required empty public constructor
     }
 
@@ -40,6 +42,7 @@ public class FragmentElectronics extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_technology, container, false);
         recyclerView = rootView.findViewById(R.id.fragment_recycler);
+
         return rootView;
     }
 
@@ -53,14 +56,28 @@ public class FragmentElectronics extends Fragment {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
 
-        ArrayList<ItemProduct> products = new ArrayList<>();
-        itemProductControl.getItemProductsByCategory(Constant.FRAGMENT_ELECTRONICS, dh);
-        AdapterProduct adapterProduct = new AdapterProduct(Constant.FRAGMENT_ELECTRONICS, getActivity(), products);
+        products = new ArrayList<>();
+        itemProductControl.getItemProductsByCategory(Constant.FRAGMENT_TECHNOLOGY, dh);
+
+        adapterProduct = new AdapterProduct(Constant.FRAGMENT_TECHNOLOGY, getActivity(), products);
         recyclerView.setAdapter(adapterProduct);
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-    }
+        ItemProduct itemProduct = data.getParcelableExtra(Constant.EXTRA_PRODUCT);
+        Iterator<ItemProduct> iterator = products.iterator();
+        int position = 0;
+        while(iterator.hasNext()){
+            ItemProduct item = iterator.next();
+            if(item.getCode() == itemProduct.getCode()){
+                products.set(position, itemProduct);
+                break;
+            }
+            position++;
+        }
+        adapterProduct.notifyDataSetChanged();
 
+    }
 }

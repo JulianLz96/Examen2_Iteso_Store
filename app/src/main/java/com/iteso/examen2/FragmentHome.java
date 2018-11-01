@@ -1,4 +1,4 @@
-package com.iteso.pdm18_scrollabletabs;
+package com.iteso.examen2;
 
 
 import android.content.Intent;
@@ -11,10 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
-import com.iteso.pdm18_scrollabletabs.database.DataBaseHandler;
-import com.iteso.pdm18_scrollabletabs.database.ItemProductControl;
-import com.iteso.pdm18_scrollabletabs.tools.Constant;
+import com.iteso.pdm18_scrollabletabs.R;
+import com.iteso.examen2.beans.ItemProduct;
+import com.iteso.examen2.database.DataBaseHandler;
+import com.iteso.examen2.database.ItemProductControl;
+import com.iteso.examen2.tools.Constant;
 
 import java.util.ArrayList;
 
@@ -23,8 +24,8 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentHome extends Fragment {
-    ItemProductControl itemProductControl;
-    DataBaseHandler dh;
+    ItemProductControl itemProductControl = new ItemProductControl();
+    DataBaseHandler dh = DataBaseHandler.getInstance(getActivity());
 
     RecyclerView recyclerView;
 

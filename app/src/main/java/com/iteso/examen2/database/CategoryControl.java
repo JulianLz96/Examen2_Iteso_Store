@@ -3,6 +3,7 @@ package com.iteso.examen2.database;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.iteso.examen2.beans.Category;
 
@@ -28,7 +29,6 @@ public class CategoryControl {
         SQLiteDatabase db = dh.getReadableDatabase();
 
         String select = "SELECT " + DataBaseHandler.CATEGORY_ID  + ","
-                + DataBaseHandler.CATEGORY_ID + ","
                 + DataBaseHandler.CATEGORY_NAME
                 + " FROM " + DataBaseHandler.TABLE_CATEGORY;
 
@@ -37,6 +37,7 @@ public class CategoryControl {
             Category category = new Category();
             category.setId(cursor.getInt(0));
             category.setName(cursor.getString(1));
+            Log.e("Categories", category.getName(), null);
             categories.add(category);
         }
 

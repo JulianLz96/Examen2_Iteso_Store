@@ -1,7 +1,9 @@
 package com.iteso.examen2;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -48,17 +50,26 @@ public class ActivityItem extends AppCompatActivity {
             spin_photo.setAdapter(photos);
 
 
-        ArrayList<Category> categories;
-        categories = categoryControl.getCategory(dh);
-        final ArrayAdapter<Category> cats = new ArrayAdapter<>(this,
+        final ArrayList<Category> categories_obj;
+        categories_obj = categoryControl.getCategory(dh);
+        final ArrayList<String> categories = new ArrayList<>();
+        categories.add(categories_obj.get(0).getName());
+        categories.add(categories_obj.get(1).getName());
+        categories.add(categories_obj.get(2).getName());
+        //Log.e("Stores", categories.get(0).getName(), null);
+        final ArrayAdapter<String> cats = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item,categories);
         spin_category.setAdapter(cats);
 
-        ArrayList<Store> Stores;
-        Stores = storeControl.getStores(dh);
-        ArrayAdapter<Store> stores = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_dropdown_item,Stores);
-        spin_store.setAdapter(stores);
+        final ArrayList<Store> Stores_obj;
+        Stores_obj = storeControl.getStores(dh);
+        ArrayList<String> stores = new ArrayList<>();
+        stores.add(Stores_obj.get(0).getName());
+        stores.add(Stores_obj.get(1).getName());
+        stores.add(Stores_obj.get(2).getName());
+       final ArrayAdapter<String> storesa = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_dropdown_item,stores);
+        spin_store.setAdapter(storesa);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,14 +78,19 @@ public class ActivityItem extends AppCompatActivity {
                 if(item_name.getText().toString().equals("")){
                     Toast.makeText(ActivityItem.this,"Insert Item Text", Toast.LENGTH_LONG).show();
                 } else {
-
+                int i;
+                i = spin_category.getSelectedItemPosition();
                     itemProduct.setImage( spin_photo.getSelectedItemPosition());
                     itemProduct.setTitle(item_name.getText().toString());
-                    itemProduct.setCategory((Category) spin_category.getSelectedItem());
-                    itemProduct.setStore((Store) spin_store.getSelectedItem());
+                    itemProduct.setCategory(categories_obj.get(i));
+                    itemProduct.setStore((Stores_obj.get(spin_store.getSelectedItemPosition())));
 
                     ItemProductControl itemProductControl = new ItemProductControl();
                     itemProductControl.addProduct(itemProduct, dh);
+
+                    Intent intent = new Intent(ActivityItem.this, ActivityMain.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });

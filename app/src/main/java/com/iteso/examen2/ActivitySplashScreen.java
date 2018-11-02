@@ -61,10 +61,7 @@ public class ActivitySplashScreen extends AppCompatActivity {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                if(dh == null)
-                Log.e("Stores", " dh null", null);
-                else
-                    Log.e("Stores", " dh not null", null);
+
                 stores = storeControl.getStores(dh);
                 if (stores.size() == 0){
                     storeControl.addStore(st1, dh);

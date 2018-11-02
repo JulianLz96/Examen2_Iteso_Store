@@ -21,7 +21,7 @@ public class StoreControl {
         values.put(DataBaseHandler.STORE_THUMBNAIL, store.getThumbnail());
         values.put(DataBaseHandler.STORE_LATITUDE, store.getLatitude());
         values.put(DataBaseHandler.STORE_LONGITUDE, store.getLongitude());
-
+        Log.e("Stores", "addStore: ", null );
         db.insert(DataBaseHandler.TABLE_STORE, null, values);
 
         try {
@@ -38,7 +38,6 @@ public class StoreControl {
         SQLiteDatabase db = dh.getReadableDatabase();
         Log.e("Stores", " Hola", null);
         String select = "SELECT " + DataBaseHandler.STORE_ID + ","
-                + DataBaseHandler.STORE_ID + ","
                 + DataBaseHandler.STORE_NAME + ","
                 + DataBaseHandler.STORE_PHONE + ","
                 + DataBaseHandler.STORE_IDCITY + ","
@@ -52,6 +51,7 @@ public class StoreControl {
             Store store = new Store();
             putStore(cursor, store);
             stores.add(store);
+            Log.e("Stores", stores.get(0).toString(), null);
         }
 
         try {
@@ -75,7 +75,7 @@ public class StoreControl {
                 + DataBaseHandler.STORE_THUMBNAIL + ","
                 + DataBaseHandler.STORE_LATITUDE + ","
                 + DataBaseHandler.STORE_LONGITUDE
-                + " FROM" + DataBaseHandler.TABLE_STORE
+                + " FROM " + DataBaseHandler.TABLE_STORE
                 + " WHERE " + DataBaseHandler.STORE_ID + " = "
                 + idStore;
         Cursor cursor = db.rawQuery(select, null);

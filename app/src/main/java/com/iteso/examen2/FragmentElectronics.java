@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,8 @@ public class FragmentElectronics extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inf2late the layout for this fragment
+        Log.e("Tech", "onCreaeteView");
         View rootView = inflater.inflate(R.layout.fragment_technology, container, false);
         recyclerView = rootView.findViewById(R.id.fragment_recycler);
         return rootView;
@@ -56,6 +58,7 @@ public class FragmentElectronics extends Fragment {
 
         ArrayList<ItemProduct> products = new ArrayList<>();
         itemProductControl.getItemProductsByCategory(Constant.FRAGMENT_ELECTRONICS, dh);
+        Log.e("Tech", "onActivityCreated: " + products.toString());
         AdapterProduct adapterProduct = new AdapterProduct(Constant.FRAGMENT_ELECTRONICS, getActivity(), products);
         recyclerView.setAdapter(adapterProduct);
     }

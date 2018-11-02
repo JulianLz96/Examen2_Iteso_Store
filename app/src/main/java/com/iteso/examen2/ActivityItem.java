@@ -52,6 +52,7 @@ public class ActivityItem extends AppCompatActivity {
 
         final ArrayList<Category> categories_obj;
         categories_obj = categoryControl.getCategory(dh);
+        Log.e("Tech", "getCategory: " + categories_obj.get(0).getName());
         final ArrayList<String> categories = new ArrayList<>();
         categories.add(categories_obj.get(0).getName());
         categories.add(categories_obj.get(1).getName());
@@ -80,9 +81,11 @@ public class ActivityItem extends AppCompatActivity {
                 } else {
                 int i;
                 i = spin_category.getSelectedItemPosition();
+                Log.e("Tech", Integer.toString(i) + categories_obj.get(0).toString());
                     itemProduct.setImage( spin_photo.getSelectedItemPosition());
                     itemProduct.setTitle(item_name.getText().toString());
                     itemProduct.setCategory(categories_obj.get(i));
+                    Log.e("Tech",categories_obj.get(i).toString());
                     itemProduct.setStore((Stores_obj.get(spin_store.getSelectedItemPosition())));
 
                     ItemProductControl itemProductControl = new ItemProductControl();

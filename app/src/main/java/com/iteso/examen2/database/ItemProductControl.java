@@ -13,6 +13,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.iteso.examen2.beans.Category;
 import com.iteso.examen2.beans.ItemProduct;
@@ -70,6 +71,7 @@ public class ItemProductControl extends ContentProvider{
         while (cursor.moveToNext()) {
             ItemProduct itemProduct = new ItemProduct();
             putItem(cursor, itemProduct,cat);
+            Log.e("Tech", itemProduct.toString());
             items.add(itemProduct);
         }
 
@@ -84,7 +86,7 @@ public class ItemProductControl extends ContentProvider{
 
     public void putItem(Cursor cursor, ItemProduct itemProduct, Category category) {
 
-        category.setId(cursor.getInt(3));
+        category.setId(cursor.getInt(2));
 
         itemProduct.setTitle(cursor.getString(0));
         itemProduct.setImage(cursor.getInt(1));

@@ -58,8 +58,8 @@ public class FragmentTechnology extends Fragment {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
 
-        products = new ArrayList<>();
-        products = itemProductControl.getItemProductsByCategory(Constant.FRAGMENT_TECHNOLOGY +1 , dh);
+        //products = new ArrayList<>();
+        products = itemProductControl.getItemProductsByCategory(1 , dh);
         Log.e("Tech", "onActivityCreated" + products.toString());
         adapterProduct = new AdapterProduct(Constant.FRAGMENT_TECHNOLOGY  , getActivity(), products);
         recyclerView.setAdapter(adapterProduct);

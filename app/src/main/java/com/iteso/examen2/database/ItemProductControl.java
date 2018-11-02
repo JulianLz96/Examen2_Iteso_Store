@@ -1,5 +1,6 @@
 package com.iteso.examen2.database;
 
+import android.app.admin.DeviceAdminInfo;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -17,6 +18,7 @@ import android.util.Log;
 
 import com.iteso.examen2.beans.Category;
 import com.iteso.examen2.beans.ItemProduct;
+import com.iteso.examen2.beans.Store;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,8 +50,26 @@ public class ItemProductControl extends ContentProvider{
 
         db.insert(DataBaseHandler.TABLE_PRODUCT, null, values);
 
+        String selectIdP = "SELECT " + DataBaseHandler.PRODUCT_ID_PRODUCT
+                + " FROM " + DataBaseHandler.TABLE_PRODUCT +
+                " WHERE " + DataBaseHandler.PRODUCT_TITLE + " = '" + itemProduct.getTitle() + "'";
+        String selectIdS = "SELECT " + DataBaseHandler.STORE_ID
+                + " FROM " + DataBaseHandler.TABLE_STORE +
+                " WHERE " +DataBaseHandler.STORE_NAME + " = '" + itemProduct.getStore().getName()+ "'";
+        Cursor cursor = db.rawQuery(selectIdP, null);
+        cursor.moveToNext();
+        int id = cursor.getInt(0);
+        Log.e("Tech", Integer.toString(id));
+        ContentValues valuesStoreProduct = new ContentValues();
+        valuesStoreProduct.put(DataBaseHandler.STORE_PRODUCT_ID_PRODUCT, id);
+        cursor = db.rawQuery(selectIdS, null);
+        cursor.moveToNext();
+        id = cursor.getInt(0);
+        valuesStoreProduct.put(DataBaseHandler.STORE_PRODUCT_ID_STORE, id);
+        db.insert(DataBaseHandler.TABLE_STORE_PRODUCT, null, valuesStoreProduct);
         try {
             db.close();
+            cursor.close();
         } catch (Exception e) {
 
         }
@@ -59,18 +79,26 @@ public class ItemProductControl extends ContentProvider{
    public ArrayList<ItemProduct> getItemProductsByCategory(int idCategory, DataBaseHandler dh){
         ArrayList<ItemProduct> items = new ArrayList<>();
         SQLiteDatabase db = dh.getReadableDatabase();
+        Log.e("Tech", "getItemProducts: " + Integer.toString(idCategory));
        Category cat = new Category();
+       Store store = new Store();
         String select = "SELECT " +
                 DataBaseHandler.PRODUCT_TITLE +
                 "," + DataBaseHandler.PRODUCT_IMAGE +
-                "," + DataBaseHandler.PRODUCT_ID_CATEGORY
-                + " FROM " + DataBaseHandler.TABLE_PRODUCT +
-                " WHERE " + DataBaseHandler.PRODUCT_ID_CATEGORY + " = " + idCategory;
+                "," + DataBaseHandler.PRODUCT_ID_CATEGORY +
+                "," + DataBaseHandler.TABLE_STORE + "." +  DataBaseHandler.STORE_ID +
+                "," + DataBaseHandler.STORE_NAME
+                + " FROM " + DataBaseHandler.TABLE_PRODUCT
+                + " INNER JOIN " + DataBaseHandler.TABLE_STORE_PRODUCT + " ON "
+                + DataBaseHandler.TABLE_PRODUCT + "." + DataBaseHandler.PRODUCT_ID_PRODUCT + "=" + DataBaseHandler.TABLE_STORE_PRODUCT + "." +DataBaseHandler.STORE_PRODUCT_ID
+                + " INNER JOIN " + DataBaseHandler.TABLE_STORE + " ON "
+                + DataBaseHandler.TABLE_STORE + "." + DataBaseHandler.STORE_ID + "=" + DataBaseHandler.TABLE_STORE_PRODUCT + "." + DataBaseHandler.STORE_PRODUCT_ID
+                + " WHERE " + DataBaseHandler.PRODUCT_ID_CATEGORY + " = " + idCategory;
 
         Cursor cursor = db.rawQuery(select, null);
         while (cursor.moveToNext()) {
             ItemProduct itemProduct = new ItemProduct();
-            putItem(cursor, itemProduct,cat);
+            putItem(cursor, itemProduct,cat, store);
             Log.e("Tech", itemProduct.toString());
             items.add(itemProduct);
         }
@@ -84,13 +112,16 @@ public class ItemProductControl extends ContentProvider{
         return items;
     }
 
-    public void putItem(Cursor cursor, ItemProduct itemProduct, Category category) {
+    public void putItem(Cursor cursor, ItemProduct itemProduct, Category category, Store store) {
 
         category.setId(cursor.getInt(2));
-
+        store.setId(cursor.getInt(3));
+        store.setName(cursor.getString(4));
         itemProduct.setTitle(cursor.getString(0));
+        Log.e("Tech", "putItem: " + itemProduct.getTitle());
         itemProduct.setImage(cursor.getInt(1));
         itemProduct.setCategory(category);
+        itemProduct.setStore(store);
         }
 
     @Override

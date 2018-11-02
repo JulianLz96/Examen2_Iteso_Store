@@ -68,4 +68,16 @@ public class Store {
         this.city = city;
     }
 
+    @Override
+    public String toString() {
+        return "Store{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", thumbnail=" + thumbnail +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", city=" + city +
+                '}';
+    }
 }

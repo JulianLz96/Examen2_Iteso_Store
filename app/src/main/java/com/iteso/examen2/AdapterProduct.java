@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,6 +64,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        Log.e("Tech", "adapter products: "+products.get(holder.getAdapterPosition()).toString());
         holder.mTitle.setText(products.get(holder.getAdapterPosition()).getTitle());
         holder.mStore.setText(products.get(holder.getAdapterPosition()).getStore().getName());
         holder.mLocation.setText(products.get(holder.getAdapterPosition()).getLocation());

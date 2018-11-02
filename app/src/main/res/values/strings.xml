@@ -17,8 +17,8 @@
     <string name="splash_text">Welcome to ITESO Products</string>
 
     <array name="item_photos">
-        <item>alienware</item>
         <item>mac</item>
+        <item>alienware</item>
         <item>micro</item>
         <item>pillows</item>
         <item>refrigerator</item>

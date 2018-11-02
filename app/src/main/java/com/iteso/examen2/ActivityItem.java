@@ -85,12 +85,12 @@ public class ActivityItem extends AppCompatActivity {
                     itemProduct.setImage( spin_photo.getSelectedItemPosition());
                     itemProduct.setTitle(item_name.getText().toString());
                     itemProduct.setCategory(categories_obj.get(i));
-                    Log.e("Tech",categories_obj.get(i).toString());
                     itemProduct.setStore((Stores_obj.get(spin_store.getSelectedItemPosition())));
+                    Log.e("Tech",(Stores_obj.get(spin_store.getSelectedItemPosition())).toString());
 
                     ItemProductControl itemProductControl = new ItemProductControl();
                     itemProductControl.addProduct(itemProduct, dh);
-
+                    Log.e("Tech", "itemProdcut agregar: " + itemProduct.toString());
                     Intent intent = new Intent(ActivityItem.this, ActivityMain.class);
                     startActivity(intent);
                     finish();

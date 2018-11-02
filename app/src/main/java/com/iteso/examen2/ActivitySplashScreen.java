@@ -47,13 +47,13 @@ public class ActivitySplashScreen extends AppCompatActivity {
         st1.setCity(city1);
 
         st2.setId(1);
-        st2.setName("Best Buy");
+        st2.setName("HomeDepot");
         st2.setPhone("87654321");
         st2.setThumbnail(0);
         st2.setCity(city2);
 
         st3.setId(0);
-        st3.setName("Best Buy");
+        st3.setName("Liverpool");
         st3.setPhone("23456098");
         st3.setThumbnail(0);
         st3.setCity(city3);

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 public class FragmentHome extends Fragment {
     ItemProductControl itemProductControl = new ItemProductControl();
     DataBaseHandler dh = DataBaseHandler.getInstance(getActivity());
+    ArrayList<ItemProduct> products;
 
     RecyclerView recyclerView;
 
@@ -38,6 +40,7 @@ public class FragmentHome extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Log.e("Tech", "onCreateView_home");
         View rootView = inflater.inflate(R.layout.fragment_technology, container, false);
         recyclerView = rootView.findViewById(R.id.fragment_recycler);
         return rootView;
@@ -53,8 +56,9 @@ public class FragmentHome extends Fragment {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
 
-        ArrayList<ItemProduct> products = new ArrayList<>();
-        itemProductControl.getItemProductsByCategory(Constant.FRAGMENT_HOME, dh);
+        products = new ArrayList<>();
+        products = itemProductControl.getItemProductsByCategory(2, dh);
+        Log.e("Tech", "onActivityCreated_home: " + products.toString());
         AdapterProduct adapterProduct = new AdapterProduct(Constant.FRAGMENT_HOME, getActivity(), products);
         recyclerView.setAdapter(adapterProduct);
     }

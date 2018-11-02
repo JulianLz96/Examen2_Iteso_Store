@@ -41,7 +41,7 @@ public class FragmentTechnology extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Log.e("Tech", "onCreateView");
+        Log.e("Tech", "onCreateView_tech");
         View rootView = inflater.inflate(R.layout.fragment_technology, container, false);
         recyclerView = rootView.findViewById(R.id.fragment_recycler);
 
@@ -58,9 +58,9 @@ public class FragmentTechnology extends Fragment {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
 
-        //products = new ArrayList<>();
+        products = new ArrayList<>();
         products = itemProductControl.getItemProductsByCategory(1 , dh);
-        Log.e("Tech", "onActivityCreated" + products.toString());
+        Log.e("Tech", "onActivityCreated_tech" + products.toString());
         adapterProduct = new AdapterProduct(Constant.FRAGMENT_TECHNOLOGY  , getActivity(), products);
         recyclerView.setAdapter(adapterProduct);
     }

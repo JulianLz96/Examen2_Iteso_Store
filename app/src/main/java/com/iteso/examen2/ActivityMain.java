@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -102,14 +103,18 @@ public class ActivityMain extends AppCompatActivity {
                 case Constant.FRAGMENT_TECHNOLOGY:
                     if (fragmentTechnology == null)
                         fragmentTechnology = new FragmentTechnology();
+                    Log.e("Tech", "touch tech");
+
                     return fragmentTechnology;
                 case Constant.FRAGMENT_HOME:
                     if (fragmentHome == null)
                         fragmentHome = new FragmentHome();
+                    Log.e("Tech", "touch home");
                     return fragmentHome;
                 case Constant.FRAGMENT_ELECTRONICS:
                     if (fragmentElectronics == null)
                         fragmentElectronics = new FragmentElectronics();
+                    Log.e("Tech", "Touch electro");
                     return fragmentElectronics;
                 default:
                     return new FragmentTechnology();

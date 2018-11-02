@@ -68,7 +68,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         holder.mTitle.setText(products.get(holder.getAdapterPosition()).getTitle());
         holder.mStore.setText(products.get(holder.getAdapterPosition()).getStore().getName());
         holder.mLocation.setText(products.get(holder.getAdapterPosition()).getLocation());
-        holder.mPhone.setText(products.get(holder.getAdapterPosition()).getPhone());
+        holder.mPhone.setText(products.get(holder.getAdapterPosition()).getStore().getPhone());
 
         switch(products.get(holder.getAdapterPosition()).getImage()){
             case Constant.TYPE_MAC:

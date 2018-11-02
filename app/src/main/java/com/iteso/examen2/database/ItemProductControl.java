@@ -87,7 +87,8 @@ public class ItemProductControl extends ContentProvider{
                 "," + DataBaseHandler.PRODUCT_IMAGE +
                 "," + DataBaseHandler.PRODUCT_ID_CATEGORY +
                 "," + DataBaseHandler.TABLE_STORE + "." +  DataBaseHandler.STORE_ID +
-                "," + DataBaseHandler.STORE_NAME
+                "," + DataBaseHandler.STORE_NAME +
+                "," + DataBaseHandler.STORE_PHONE
                 + " FROM " + DataBaseHandler.TABLE_PRODUCT
                 + " INNER JOIN " + DataBaseHandler.TABLE_STORE_PRODUCT + " ON "
                 + DataBaseHandler.TABLE_PRODUCT + "." + DataBaseHandler.PRODUCT_ID_PRODUCT + "=" + DataBaseHandler.TABLE_STORE_PRODUCT + "." +DataBaseHandler.STORE_PRODUCT_ID
@@ -117,6 +118,7 @@ public class ItemProductControl extends ContentProvider{
         category.setId(cursor.getInt(2));
         store.setId(cursor.getInt(3));
         store.setName(cursor.getString(4));
+        store.setPhone(cursor.getString(5));
         itemProduct.setTitle(cursor.getString(0));
         Log.e("Tech", "putItem: " + itemProduct.getTitle());
         itemProduct.setImage(cursor.getInt(1));

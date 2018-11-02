@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class FragmentElectronics extends Fragment {
     ItemProductControl itemProductControl = new ItemProductControl();
     DataBaseHandler dh = DataBaseHandler.getInstance(getActivity());
-
+    ArrayList<ItemProduct> products;
 
     RecyclerView recyclerView;
 
@@ -40,7 +40,7 @@ public class FragmentElectronics extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inf2late the layout for this fragment
-        Log.e("Tech", "onCreaeteView");
+        Log.e("Tech", "onCreateView_electro");
         View rootView = inflater.inflate(R.layout.fragment_technology, container, false);
         recyclerView = rootView.findViewById(R.id.fragment_recycler);
         return rootView;
@@ -56,9 +56,9 @@ public class FragmentElectronics extends Fragment {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
 
-        ArrayList<ItemProduct> products = new ArrayList<>();
-        itemProductControl.getItemProductsByCategory(Constant.FRAGMENT_ELECTRONICS, dh);
-        Log.e("Tech", "onActivityCreated: " + products.toString());
+        //= new ArrayList<>();
+        products = itemProductControl.getItemProductsByCategory(3, dh);
+        Log.e("Tech", "onActivityCreated_electro: " + products.toString());
         AdapterProduct adapterProduct = new AdapterProduct(Constant.FRAGMENT_ELECTRONICS, getActivity(), products);
         recyclerView.setAdapter(adapterProduct);
     }
